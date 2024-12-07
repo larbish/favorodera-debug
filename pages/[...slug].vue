@@ -8,7 +8,7 @@
         404!
       </h1>
 
-      <p class="text-lg">
+      <p class="text-lg text-center">
         Ouch! Looks like you have lost your way!
       </p>
 
