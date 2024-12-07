@@ -186,9 +186,15 @@
 
         </div>
 
-        <div class="w-full h-px bg-gray/25" />
+        <div
+          v-if="data?.links"
+          class="w-full h-px bg-gray/25"
+        />
 
-        <div class="w-full flex flex-col gap-2 lg:flex-row lg:gap-4">
+        <div
+          v-if="data?.links"
+          class="w-full flex flex-col gap-2 lg:flex-row lg:gap-4"
+        >
 
           <div class="min-w-37.5 flex items-center gap-2 text-blue-700 font-medium">
 
@@ -224,6 +230,7 @@
           </div>
 
         </div>
+
       </div>
 
     </div>
