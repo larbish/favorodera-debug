@@ -1,0 +1,55 @@
+@import '@unocss/reset/tailwind.css';
+
+html {
+  scroll-behavior: smooth;
+
+  ::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 0.25rem;
+
+    &:hover {
+      background-color: #555;
+      cursor: grab;
+    }
+  }
+
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
+}
+
+body {
+  background-color: #0C0C0C;
+  font-family: "IBM Plex Mono", monospace;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: white;
+}
+
+#app {
+  width: clamp(15rem, 50rem, 100%);
+  padding: 1rem;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 1s ease;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
