@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     '@nuxthq/studio',
     '@nuxtjs/color-mode',
   ],
+  ssr: true,
   components: [
     {
       path: '~/components/content-components',
@@ -68,10 +69,6 @@ export default defineNuxtConfig({
     },
   },
   compatibilityDate: '2024-11-01',
-  typescript: {
-    strict: true,
-    typeCheck: true,
-  },
   eslint: {
     config: {
       stylistic: true,
