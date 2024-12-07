@@ -1,6 +1,6 @@
 <template>
 
-  <main class="w-full flex flex-[1_1_auto] flex-col justify-between gap-y-2">
+  <main class="w-full flex flex-[1_1_auto] flex-col gap-y-2">
 
     <ProjectsHeader />
     <ProjectsDetails />

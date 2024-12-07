@@ -230,12 +230,42 @@
 
   </template>
 
+  <template v-else-if="!data">
+
+    <div
+      class="col-span-2 b-1 b-yellow-500/60 rounded b-solid bg-yellow-500/5 px-3.5 py-2.5"
+    >
+
+      <p class="text-xs text-yellow-500">
+        Oops!! 🫢 Project not found.
+        I haven't built this project yet check the name and try again.
+      </p>
+
+    </div>
+
+  </template>
+
+  <template v-else-if="error">
+
+    <div
+      class="col-span-2 b-1 b-red-500/60 rounded b-solid bg-red-500/5 px-3.5 py-2.5"
+    >
+
+      <p class="text-xs text-red-500">
+        Oops!! 🫢 Network error.
+        There's something wrong with your network. Please check your internet connection and try again.
+      </p>
+
+    </div>
+
+  </template>
+
 </template>
 
 <script setup lang="ts">
 const { project } = useRoute().params
 
-const { data, status } = await useLazyAsyncData(
+const { data, status, error } = await useLazyAsyncData(
   `${project}`,
   () => queryContent(`/projects/${project}`)
     .where({ _type: 'markdown', id: { $eq: `${project}` } })
