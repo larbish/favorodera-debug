@@ -42,9 +42,14 @@
 
           </div>
 
-          <p class="text-gray">
+          <NuxtLink
+            :to="profile?.resume"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-gray hover:underline"
+          >
             RESUME
-          </p>
+          </NuxtLink>
 
         </div>
 

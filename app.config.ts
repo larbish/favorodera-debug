@@ -3,6 +3,7 @@ export default defineAppConfig({
     name: 'Favour Emeka',
     available: true,
     avatar: '/images/avatar.jpg',
+    resume: 'https://drive.google.com/file/d/15NGRKx8cc52hd0vQWwEIHPwD-hyGqHqe/view?usp=sharing',
     stack: [
       { name: 'Vue', icon: 'i-logos-vue', url: 'https://vuejs.org/' },
       { name: 'Nuxt', icon: 'i-logos-nuxt-icon', url: 'https://nuxt.com/' },
