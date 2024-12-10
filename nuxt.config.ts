@@ -57,15 +57,14 @@ export default defineNuxtConfig({
   },
   content: {
     documentDriven: true,
+    markdown: {
+      mdc: true,
+    },
     highlight: {
       langs: [
-        // ...
+        'bash', 'vue', 'html', 'css', 'javascript', 'typescript', 'vue-html', 'c', 'cmd', 'git-commit', 'json', 'markdown', 'scss',
       ],
-      theme: {
-        default: 'github-dark',
-        dark: 'github-dark',
-        light: 'github-light',
-      },
+      theme: 'github-dark',
     },
   },
   compatibilityDate: '2024-11-01',
