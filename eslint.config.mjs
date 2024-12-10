@@ -7,7 +7,6 @@ export default withNuxt({
       maxEOF: 1,
       maxBOF: 0,
     }],
-    'vue/multi-word-component-names': 'off',
     'vue/multiline-html-element-content-newline': ['error', {
       allowEmptyLines: true,
       ignores: ['pre', 'textarea'],
