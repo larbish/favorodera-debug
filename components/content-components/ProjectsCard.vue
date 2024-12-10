@@ -1,7 +1,7 @@
 <template>
 
   <NuxtLink
-    :to="path"
+    :to="projectPath"
     class="group flex flex-col gap-y-2 rounded-4 bg-container p-3"
   >
 
@@ -9,8 +9,8 @@
 
       <div class="size-full overflow-hidden rounded-lg duration-1000 delay-100 property-all group-hover:scale-110">
         <img
-          :alt="name"
-          :src="image"
+          :alt="projectName"
+          :src="projectImage"
           class="size-full object-cover"
         >
       </div>
@@ -20,11 +20,11 @@
     <div class="flex flex-col gap-y-1">
 
       <h1 class="text-sm font-semibold line-clamp-1">
-        {{ name }}
+        {{ projectName }}
       </h1>
 
       <p class="text-sm text-gray line-clamp-1">
-        {{ description }}
+        {{ projectDescription }}
       </p>
 
     </div>
@@ -35,21 +35,9 @@
 
 <script setup lang="ts">
 defineProps({
-  name: {
-    type: String,
-    required: true,
-  },
-  path: {
-    type: String,
-    required: true,
-  },
-  image: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
+  projectName: String,
+  projectPath: String,
+  projectImage: String,
+  projectDescription: String,
 })
 </script>
