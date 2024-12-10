@@ -1,6 +1,6 @@
 <template>
 
-  <template v-if="data && status === 'success' || status === 'idle' || status === 'pending'">
+  <template v-if="project && status === 'success' || status === 'idle' || status === 'pending'">
 
     <div class="w-full flex flex-col gap-y-4">
 
@@ -8,8 +8,8 @@
 
         <img
           v-if="status === 'success'"
-          :src="data?.image"
-          :alt="data?.name"
+          :src="project?.image"
+          :alt="project?.name"
           class="size-full"
           loading="lazy"
         >
@@ -23,7 +23,7 @@
 
       <div class="w-full flex flex-col gap-y-8 text-sm">
 
-        <div class="w-full flex flex-col gap-2 lg:flex-row lg:gap-4">
+        <div class="w-full flex flex-col gap-2 items-start lg:flex-row lg:gap-4">
 
           <div class="min-w-37.5 flex items-center gap-2 text-blue-500 font-medium">
 
@@ -33,7 +33,7 @@
           </div>
 
           <p v-if="status === 'success'">
-            {{ data?.name }}
+            {{ project?.name }}
           </p>
 
           <div
@@ -53,7 +53,7 @@
 
         </div>
 
-        <div class="w-full flex flex-col gap-2 lg:flex-row lg:gap-4">
+        <div class="w-full flex flex-col gap-2 items-start lg:flex-row lg:gap-4">
 
           <div class="min-w-37.5 flex items-center gap-2 text-orange-400 font-medium">
 
@@ -62,12 +62,11 @@
 
           </div>
 
-          <p
+          <ContentRenderer
             v-if="status === 'success'"
-            class="break-keep hyphens-auto"
-          >
-            {{ data?.description }}
-          </p>
+            :value="project as ParsedContent"
+            class="w-full overflow-x-auto "
+          />
 
           <div
             v-else
@@ -94,7 +93,7 @@
 
         </div>
 
-        <div class="w-full flex flex-col gap-2 lg:flex-row lg:gap-4">
+        <div class="w-full flex flex-col gap-2 items-start lg:flex-row lg:gap-4">
 
           <div class="min-w-37.5 flex items-center gap-2 text-purple-400 font-medium">
 
@@ -108,7 +107,7 @@
             <template v-if="status === 'success'">
 
               <p
-                v-for="technology in data?.technologies"
+                v-for="technology in project?.technologies"
                 :key="technology"
                 class="rounded bg-container px-2 py-1 text-2.5 font-semibold tracking-widest"
               >
@@ -131,22 +130,22 @@
 
         </div>
 
-        <div class="w-full flex flex-col gap-2 lg:flex-row lg:gap-4">
+        <div class="w-full flex flex-col gap-2 items-start lg:flex-row lg:gap-4">
 
           <div
             class="min-w-37.5 flex items-center gap-2 font-medium"
             :class="{
-              'text-green-500': data?.status === 'Production',
-              'text-red-500': data?.status === 'Issues',
-              'text-orange-400': data?.status === 'Development',
+              'text-green-500': project?.status === 'Production',
+              'text-red-500': project?.status === 'Issues',
+              'text-orange-400': project?.status === 'Development',
             }"
           >
 
             <i
               :class="{
-                'i-hugeicons-checkmark-circle-02': data?.status === 'Production',
-                'i-hugeicons-alert-circle': data?.status === 'Issues',
-                'i-hugeicons-computer-programming-01': data?.status === 'Development',
+                'i-hugeicons-checkmark-circle-02': project?.status === 'Production',
+                'i-hugeicons-alert-circle': project?.status === 'Issues',
+                'i-hugeicons-computer-programming-01': project?.status === 'Development',
               }"
               class="size-5 i-hugeicons-clock-01"
             />
@@ -156,7 +155,7 @@
           </div>
 
           <p v-if="status === 'success'">
-            {{ data?.status }}
+            {{ project?.status }}
           </p>
 
           <ComponentSkeleton
@@ -166,7 +165,7 @@
 
         </div>
 
-        <div class="w-full flex flex-col gap-2 lg:flex-row lg:gap-4">
+        <div class="w-full flex flex-col gap-2 items-start lg:flex-row lg:gap-4">
 
           <div class="min-w-37.5 flex items-center gap-2 text-teal-500 font-medium">
 
@@ -176,7 +175,7 @@
           </div>
 
           <p v-if="status === 'success'">
-            {{ data?.created }}
+            {{ project?.created }}
           </p>
 
           <ComponentSkeleton
@@ -187,13 +186,13 @@
         </div>
 
         <div
-          v-if="data?.links"
+          v-if="project?.links"
           class="w-full h-px bg-gray/25"
         />
 
         <div
-          v-if="data?.links"
-          class="w-full flex flex-col gap-2 lg:flex-row lg:gap-4"
+          v-if="project?.links"
+          class="w-full flex flex-col gap-2 items-start lg:flex-row lg:gap-4"
         >
 
           <div class="min-w-37.5 flex items-center gap-2 text-blue-700 font-medium">
@@ -206,8 +205,8 @@
           <div class="w-full flex flex-1 flex-col gap-2">
 
             <NuxtLink
-              v-if="data?.links?.repository"
-              :to="data?.links?.repository"
+              v-if="project?.links?.repository"
+              :to="project?.links?.repository"
               target="_blank"
               rel="noopener noreferrer"
               class="w-full flex items-center justify-center gap-2 b b-gray rounded-md bg-transparent px-4 py-2 duration-1000 delay-50 ease property-all hover:bg-gray/15 "
@@ -217,8 +216,8 @@
             </NuxtLink>
 
             <NuxtLink
-              v-if="data?.links?.live"
-              :to="data?.links?.live"
+              v-if="project?.links?.live"
+              :to="project?.links?.live"
               target="_blank"
               rel="noopener noreferrer"
               class="w-full flex items-center justify-center gap-2 b b-gray rounded-md bg-transparent px-4 py-2 duration-1000 delay-50 ease property-all hover:bg-gray/15 "
@@ -237,45 +236,51 @@
 
   </template>
 
-  <template v-else-if="!data">
-
-    <div
-      class="col-span-2 b-1 b-yellow-500/60 rounded b-solid bg-yellow-500/5 px-3.5 py-2.5"
-    >
-
-      <p class="text-xs text-yellow-500">
-        Oops!! 🫢 Project not found.
-        I haven't built this project yet check the name and try again.
-      </p>
-
-    </div>
-
-  </template>
-
   <template v-else-if="error">
 
-    <div
-      class="col-span-2 b-1 b-red-500/60 rounded b-solid bg-red-500/5 px-3.5 py-2.5"
-    >
+    <template v-if="error?.message.includes('404 Document not found!')">
 
-      <p class="text-xs text-red-500">
-        Oops!! 🫢 Network error.
-        There's something wrong with your network. Please check your internet connection and try again.
-      </p>
+      <div
+        class="col-span-2 b-1 b-yellow-500/60 rounded b-solid bg-yellow-500/5 px-3.5 py-2.5"
+      >
 
-    </div>
+        <p class="text-xs text-yellow-500">
+          Oops!! 🫢 Project not found.
+          I haven't built this project yet check the name and try again.
+        </p>
+
+      </div>
+
+    </template>
+
+    <template v-else>
+
+      <div
+        class="col-span-2 b-1 b-red-500/60 rounded b-solid bg-red-500/5 px-3.5 py-2.5"
+      >
+
+        <p class="text-xs text-red-500">
+          Oops!! 🫢 Network error.
+          There's something wrong with your network. Please check your internet connection and try again.
+        </p>
+
+      </div>
+
+    </template>
 
   </template>
 
 </template>
 
 <script setup lang="ts">
-const { project } = useRoute().params
+import type { ParsedContent } from '@nuxt/content'
 
-const { data, status, error } = await useLazyAsyncData(
-  `${project}`,
-  () => queryContent(`/projects/${project}`)
-    .where({ _type: 'markdown', id: { $eq: `${project}` } })
+const { projectId } = useRoute().params
+
+const { data: project, status, error } = await useLazyAsyncData(
+  `${projectId}`,
+  () => queryContent(`/projects/${projectId}`)
+    .where({ _type: 'markdown', id: { $eq: `${projectId}` } })
     .findOne(),
   { server: false },
 )
