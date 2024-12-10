@@ -1,7 +1,4 @@
-::component-navigation-header
----
-path: '/'
----
+::projects-header
 ::
 
 ::projects-grid

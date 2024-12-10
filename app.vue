@@ -15,7 +15,6 @@
 </template>
 
 <script setup lang="ts">
-
 useSeoMeta({
   titleTemplate: title => `Favour Emeka | ${title}`,
   ogUrl: 'https://favorodera.vercel.app',
