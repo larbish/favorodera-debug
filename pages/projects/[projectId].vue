@@ -2,7 +2,7 @@
 
   <main class="w-full flex flex-[1_1_auto] flex-col gap-y-2">
 
-    <ProjectsHeader />
+    <ComponentNavigationHeader path="/projects" />
     <ProjectsDetails />
 
   </main>
@@ -10,10 +10,12 @@
 </template>
 
 <script setup lang="ts">
-const { project } = useRoute().params
 useHead({
-  title: String(project).split('_')
+  title: String(useRoute().params.projectId)
+    .replace(/-/g, ' ')
+    .split(' ')
     .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-    .join(''),
+    .join(' '),
 })
+
 </script>

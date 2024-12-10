@@ -18,10 +18,10 @@
         <ComponentProjectsCard
           v-for="project in projects"
           :key="project.name"
-          :project-name="project.name"
-          :project-path="`/projects/${project.id}`"
-          :project-image="project.image"
-          :project-description="project.description"
+          :name="project.name"
+          :path="`/projects/${project.id}`"
+          :image="project.image"
+          :description="project.description"
         />
 
       </template>
